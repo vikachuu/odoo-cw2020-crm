@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+
+	<record id="view_order_form_inherit" model="ir.ui.view">
+			<field name="name">Alumni contact custom</field>
+			<field name="model">res.partner</field>
+			<field name="inherit_id" ref="base.view_partner_form"/>
+			<field name="arch" type="xml">
+
+			  <!-- make unnecessary fiels invisible -->
+			  	<field name="vat" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+			  	<field name="state_id" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+			  	<field name="zip" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+			  	<field name="title" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+			  	<field name="street2" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+				<field name="website" position="attributes">
+						<attribute name="invisible">True</attribute>
+				</field>
+
+
+			  <!-- new custom fields -->
+			  <field name="parent_id" position="before">
+						<field name="full_name" placeholder="Full name in latin" attrs="{'invisible': [('is_company','=', True)]}"/>
+				</field>
+
+			  <field name="vat" position="after">
+						<field name="birth_date" widget="date" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="facebook_link" widget="url" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="linkedin_link" widget="url" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="diploma_naukma" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+				</field>
+
+			  <field name="category_id" position="after">
+					<field name="bachelor_degree" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="show_bachelor" attrs="{'invisible': 1}"/>
+					<field name="bachelor_faculty" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
+					<field name="bachelor_speciality" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
+					<field name="bachelor_year_in" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
+					<field name="bachelor_year_out" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
+
+					<field name="master_degree" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="show_master" attrs="{'invisible': 1}"/>
+					<field name="master_faculty" attrs="{'invisible': [('show_master','=', False)]}"/>
+					<field name="master_speciality" attrs="{'invisible': [('show_master','=', False)]}"/>
+					<field name="master_year_in" attrs="{'invisible': [('show_master','=', False)]}"/>
+					<field name="master_year_out" attrs="{'invisible': [('show_master','=', False)]}"/>
+				</field>
+
+			</field>
+	</record>
+
+  </data>
+</odoo>
