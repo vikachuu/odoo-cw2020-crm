@@ -31,11 +31,14 @@
 				<field name="phone" position="attributes">
 						<attribute name="placeholder">+380987654321</attribute>
 				</field>
+				<field name="name" position="attributes">
+						<attribute name="placeholder">Прізвище, ім’я і по-батькові</attribute>
+				</field>
 
 
 			  <!-- new custom fields -->
 			  <field name="parent_id" position="before">
-						<field name="full_name" placeholder="Full name in latin" attrs="{'invisible': [('is_company','=', True)]}"/>
+						<field name="full_name" placeholder="Name and surname in English" attrs="{'invisible': [('is_company','=', True)]}"/>
 				</field>
 
 			  <field name="vat" position="after">
