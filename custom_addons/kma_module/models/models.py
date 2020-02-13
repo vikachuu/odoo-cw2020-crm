@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+import re
 from datetime import datetime
-from odoo import models, fields, api
+from odoo import models, fields, api, exceptions
 
 
 def get_years():
@@ -44,3 +45,8 @@ class AlumniContact(models.Model):
 			self.show_bachelor = True
 		else:
 			self.show_bachelor = False
+
+	@api.constrains('phone')
+	def _check_phone_number(self):
+		if re.match("^\+\d{10,13}$", self.phone) is None:
+			raise exceptions.ValidationError("Введіть телефонний номер в правильному форматі. Телефон повинен виглядати наступним чином +380444256064.")

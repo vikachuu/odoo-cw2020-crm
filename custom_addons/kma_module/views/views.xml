@@ -24,7 +24,12 @@
 						<attribute name="invisible">True</attribute>
 				</field>
 				<field name="website" position="attributes">
-						<attribute name="invisible">True</attribute>
+						<attribute name="attrs">{'invisible': [('is_company','=', False)]}</attribute>
+				</field>
+
+				<!-- rename fields -->
+				<field name="phone" position="attributes">
+						<attribute name="placeholder">+380987654321</attribute>
 				</field>
 
 
