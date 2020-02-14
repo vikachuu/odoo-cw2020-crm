@@ -52,5 +52,6 @@ class AlumniContact(models.Model):
 
 	@api.constrains('phone')
 	def _check_phone_number(self):
-		if re.match("^\+\d{10,13}$", self.phone) is None:
-			raise exceptions.ValidationError("Введіть телефонний номер в правильному форматі. Телефон повинен виглядати наступним чином +380444256064.")
+		if self.phone:
+			if re.match("^\+\d{10,13}$", self.phone) is None:
+				raise exceptions.ValidationError("Введіть телефонний номер в правильному форматі. Телефон повинен виглядати наступним чином +380444256064.")
