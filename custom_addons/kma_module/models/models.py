@@ -19,6 +19,10 @@ class AlumniContact(models.Model):
 
 	facebook_link = fields.Char(string='Facebook')
 	linkedin_link = fields.Char(string='LinkedIn')
+	skype = fields.Char(string='Skype')
+	telegram = fields.Char(string='Telegram')
+	viber = fields.Char(string='Viber')
+
 	diploma_naukma = fields.Boolean(string='Diploma NaUKMA', default=False)
 
 	bachelor_degree = fields.Boolean(string='NaUKMA Bachelor', default=False)
