@@ -34,7 +34,7 @@ class AlumniContact(models.Model):
 
 	master_degree = fields.Boolean(string='NaUKMA Master', default=False)
 	show_master = fields.Boolean(string='Show master', default=False)
-	master_faculty = fields.Char(string='Bachelor faculty')
+	master_faculty = fields.Char(string='Master faculty')
 	master_speciality = fields.Char(string='Master speciality')
 	master_year_in = fields.Selection(get_years(), string='Entry year')
 	master_year_out = fields.Selection(get_years(), string='Finish year')
@@ -50,8 +50,20 @@ class AlumniContact(models.Model):
 		else:
 			self.show_bachelor = False
 
-	@api.constrains('phone')
+	@api.onchange('phone')
 	def _check_phone_number(self):
 		if self.phone:
-			if re.match("^\+\d{10,13}$", self.phone) is None:
+			remove_odd_symbols_phone = re.sub("[^\+\d]", "", self.phone)
+			if re.match("^\+\d{10,13}$", remove_odd_symbols_phone) is None:
 				raise exceptions.ValidationError("Введіть телефонний номер в правильному форматі. Телефон повинен виглядати наступним чином +380444256064.")
+			else:
+				return {'value': {'phone': remove_odd_symbols_phone}}
+
+	@api.onchange('mobile')
+	def _check_mobile_number(self):
+		if self.mobile:
+			remove_odd_symbols_mobile = re.sub("[^\+\d]", "", self.mobile)
+			if re.match("^\+\d{10,13}$", remove_odd_symbols_mobile) is None:
+				raise exceptions.ValidationError("Введіть телефонний номер в правильному форматі. Телефон повинен виглядати наступним чином +380444256064.")
+			else:
+				return {'value': {'mobile': remove_odd_symbols_mobile}}
