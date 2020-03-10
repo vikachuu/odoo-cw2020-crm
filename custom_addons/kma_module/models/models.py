@@ -29,15 +29,15 @@ class AlumniContact(models.Model):
 	show_bachelor = fields.Boolean(string='Show bachelor', default=False)
 	bachelor_faculty = fields.Char(string='Bachelor faculty')
 	bachelor_speciality = fields.Char(string='Bachelor speciality')
-	bachelor_year_in = fields.Selection(get_years(), string='Entry year')
-	bachelor_year_out = fields.Selection(get_years(), string='Finish year')
+	bachelor_year_in = fields.Selection(get_years(), string='Bachelor entry year')
+	bachelor_year_out = fields.Selection(get_years(), string='Bachelor finish year')
 
 	master_degree = fields.Boolean(string='NaUKMA Master', default=False)
 	show_master = fields.Boolean(string='Show master', default=False)
 	master_faculty = fields.Char(string='Master faculty')
 	master_speciality = fields.Char(string='Master speciality')
-	master_year_in = fields.Selection(get_years(), string='Entry year')
-	master_year_out = fields.Selection(get_years(), string='Finish year')
+	master_year_in = fields.Selection(get_years(), string='Master entry year')
+	master_year_out = fields.Selection(get_years(), string='Master finish year')
 
 	@api.onchange('master_degree')
 	def _master_checked(self):
