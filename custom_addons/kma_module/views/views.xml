@@ -32,7 +32,7 @@
 						<attribute name="placeholder">+380987654321</attribute>
 				</field>
 				<field name="name" position="attributes">
-						<attribute name="placeholder">Прізвище, ім’я і по-батькові</attribute>
+						<attribute name="placeholder">Прізвище, ім’я і по-батькові / Назва компанії</attribute>
 				</field>
 
 
@@ -51,15 +51,20 @@
 				</field>
 
 			  <field name="category_id" position="after">
-			  		<field name="diploma_naukma" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
-					<field name="bachelor_degree" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+
+					<field name="is_alumni" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="show_alumni" attrs="{'invisible': 1}"/>
+
+					<field name="diploma_naukma" widget="boolean" attrs="{'invisible': [('show_alumni','=', False)]}"/>
+
+					<field name="bachelor_degree" widget="boolean" attrs="{'invisible': [('show_alumni','=', False)]}"/>
 					<field name="show_bachelor" attrs="{'invisible': 1}"/>
 					<field name="bachelor_faculty" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
 					<field name="bachelor_speciality" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
 					<field name="bachelor_year_in" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
 					<field name="bachelor_year_out" attrs="{'invisible': [('show_bachelor','=', False)]}"/>
 
-					<field name="master_degree" widget="boolean" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="master_degree" widget="boolean" attrs="{'invisible': [('show_alumni','=', False)]}"/>
 					<field name="show_master" attrs="{'invisible': 1}"/>
 					<field name="master_faculty" attrs="{'invisible': [('show_master','=', False)]}"/>
 					<field name="master_speciality" attrs="{'invisible': [('show_master','=', False)]}"/>

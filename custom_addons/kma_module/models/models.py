@@ -23,6 +23,9 @@ class AlumniContact(models.Model):
 	telegram = fields.Char(string='Telegram')
 	viber = fields.Char(string='Viber')
 
+	is_alumni = fields.Boolean(string='NaUKMA Alumni', default=False)
+	show_alumni = fields.Boolean(string='Show alumni', default=False)
+
 	diploma_naukma = fields.Boolean(string='Diploma NaUKMA', default=False)
 
 	bachelor_degree = fields.Boolean(string='NaUKMA Bachelor', default=False)
@@ -39,16 +42,17 @@ class AlumniContact(models.Model):
 	master_year_in = fields.Selection(get_years(), string='Master entry year')
 	master_year_out = fields.Selection(get_years(), string='Master finish year')
 
-	@api.onchange('master_degree')
-	def _master_checked(self):
-		self.show_master = True if self.master_degree else False
+	@api.onchange('is_alumni')
+	def alumni_checked(self):
+		self.show_alumni = True if self.is_alumni else False
 
 	@api.onchange('bachelor_degree')
 	def _bachelor_checked(self):
-		if self.bachelor_degree:
-			self.show_bachelor = True
-		else:
-			self.show_bachelor = False
+		self.show_bachelor = True if self.bachelor_degree else False
+
+	@api.onchange('master_degree')
+	def _master_checked(self):
+		self.show_master = True if self.master_degree else False
 
 	@api.onchange('phone')
 	def _check_phone_number(self):
