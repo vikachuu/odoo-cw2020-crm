@@ -4,6 +4,25 @@ from datetime import datetime
 from odoo import models, fields, api, exceptions
 
 
+faculty_specialities_dict = {
+	"Факультет інформатики": ["Інженерія програмного забезпечення", "Прикладна математика", "Комп\'ютерні науки", "Системний аналіз"],
+	"Факультет правничих наук": [],
+	"Факультет економічних наук": [],
+	"Факультет природничих наук": [],
+	"Факультет соціальних наук": [],
+	"Факультет гуманітарних наук": [],
+}
+
+
+def get_faculties():
+	return [(str(i), k) for i, k in enumerate(faculty_specialities_dict.keys())]
+
+
+def get_specialities(faculty):
+	specilities = faculty_specialities_dict.get(faculty)
+	return [(str(i), k) for i, k in enumerate(specilities)]
+
+
 def get_years():
 	year_list = []
 	for i in range(1991, datetime.today().year + 10):
@@ -30,8 +49,8 @@ class AlumniContact(models.Model):
 
 	bachelor_degree = fields.Boolean(string='NaUKMA Bachelor', default=False)
 	show_bachelor = fields.Boolean(string='Show bachelor', default=False)
-	bachelor_faculty = fields.Char(string='Bachelor faculty')
-	bachelor_speciality = fields.Char(string='Bachelor speciality')
+	bachelor_faculty = fields.Selection(get_faculties(), string='Bachelor faculty')  # all faculties
+	bachelor_speciality = fields.Selection(get_specialities("Факультет інформатики"), string='Bachelor speciality')  # temporary: only FI specialities
 	bachelor_year_in = fields.Selection(get_years(), string='Bachelor entry year')
 	bachelor_year_out = fields.Selection(get_years(), string='Bachelor finish year')
 

@@ -35,6 +35,10 @@
 						<attribute name="placeholder">Прізвище, ім’я і по-батькові / Назва компанії</attribute>
 				</field>
 
+				<field name="category_id" position="attributes">
+						<attribute name="required">True</attribute>
+				</field>
+
 
 			  <!-- new custom fields -->
 			  <field name="parent_id" position="before">
