@@ -15,12 +15,12 @@ faculty_specialities_dict = {
 
 
 def get_faculties():
-	return [(str(i), k) for i, k in enumerate(faculty_specialities_dict.keys())]
+	return [(str(i), str(i)) for i in faculty_specialities_dict.keys()]
 
 
 def get_specialities(faculty):
 	specilities = faculty_specialities_dict.get(faculty)
-	return [(str(i), k) for i, k in enumerate(specilities)]
+	return [(str(i), str(i)) for i in specilities]
 
 
 def get_years():
@@ -56,8 +56,8 @@ class AlumniContact(models.Model):
 
 	master_degree = fields.Boolean(string='NaUKMA Master', default=False)
 	show_master = fields.Boolean(string='Show master', default=False)
-	master_faculty = fields.Char(string='Master faculty')
-	master_speciality = fields.Char(string='Master speciality')
+	master_faculty = fields.Selection(get_faculties(), string='Master faculty')
+	master_speciality = fields.Selection(get_specialities("Факультет інформатики"), string='Master speciality')  # temporary: only FI specialities
 	master_year_in = fields.Selection(get_years(), string='Master entry year')
 	master_year_out = fields.Selection(get_years(), string='Master finish year')
 
