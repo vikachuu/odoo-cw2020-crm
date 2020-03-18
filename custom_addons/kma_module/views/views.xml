@@ -11,24 +11,22 @@
 			  	<field name="vat" position="attributes">
 						<attribute name="invisible">True</attribute>
 				</field>
-			  	<field name="state_id" position="attributes">
-						<attribute name="invisible">True</attribute>
-				</field>
-			  	<field name="zip" position="attributes">
-						<attribute name="invisible">True</attribute>
-				</field>
 			  	<field name="title" position="attributes">
 						<attribute name="invisible">True</attribute>
 				</field>
-			  	<field name="street2" position="attributes">
+				<field name="type" position="attributes">
 						<attribute name="invisible">True</attribute>
 				</field>
+
 				<field name="website" position="attributes">
 						<attribute name="attrs">{'invisible': [('is_company','=', False)]}</attribute>
 				</field>
 
 				<!-- rename fields -->
 				<field name="phone" position="attributes">
+						<attribute name="placeholder">+380987654321</attribute>
+				</field>
+				<field name="mobile" position="attributes">
 						<attribute name="placeholder">+380987654321</attribute>
 				</field>
 				<field name="name" position="attributes">
@@ -46,6 +44,8 @@
 				</field>
 
 			  <field name="vat" position="after">
+			  		<field name="contact_city" attrs="{'invisible': [('is_company','=', True)]}"/>
+					<field name="contact_country" attrs="{'invisible': [('is_company','=', True)]}"/>
 					<field name="birth_date" widget="date" attrs="{'invisible': [('is_company','=', True)]}"/>
 					<field name="facebook_link" widget="url" attrs="{'invisible': [('is_company','=', True)]}"/>
 					<field name="linkedin_link" widget="url" attrs="{'invisible': [('is_company','=', True)]}"/>

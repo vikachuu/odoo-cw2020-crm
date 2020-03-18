@@ -36,6 +36,9 @@ class AlumniContact(models.Model):
 	full_name = fields.Char(string='Full name')
 	birth_date = fields.Date(string='Date of birth')
 
+	contact_city = fields.Char(string='Contact city')
+	contact_country = fields.Char(string='Contact country')
+
 	facebook_link = fields.Char(string='Facebook')
 	linkedin_link = fields.Char(string='LinkedIn')
 	skype = fields.Char(string='Skype')
